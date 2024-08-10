@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Goal Manager</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      href="https://img.icons8.com/ios-filled/50/000000/todo-list.png"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>Vue Goal Manager</h1>
+        <p>Effortlessly manage your goals</p>
+      </header>
+      <main>
+        <div class="controls">
+          <input
+            type="text"
+            v-model="enterdValue"
+            placeholder="Enter your goal..."
+          />
+          <button @click="addGoal" class="add-btn">Add Goal</button>
+          <button @click="removeGoal" class="remove-btn">
+            Remove Last Goal
+          </button>
+          <button @click="resetGoals" class="reset-btn">Reset All Goals</button>
+        </div>
+        <div v-if="goals.length > 0" class="goal-list">
+          <ul>
+            <li v-for="goal in goals" :key="goal.id">
+              <span>{{ goal.text }}</span>
+              <div class="actions">
+                <button @click="editGoal(goal.id)" class="edit-btn">
+                  ✎ Edit
+                </button>
+                <button @click="deleteGoal(goal.id)" class="delete-btn">
+                  ❌ Delete
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div v-else class="no-goals">
+          <p>No goals yet. Start adding some goals to get going!</p>
+        </div>
+      </main>
+      <footer>
+        <p>Crafted with ❤️ and Vue.js</p>
+      </footer>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
